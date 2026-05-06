@@ -16,7 +16,7 @@ button { cursor: pointer; }
   <input type="text" name="user_name" placeholder="Dein Name" required>
   <input type="number" name="budget" placeholder="Budget (Fr.)" required>
   <select name="Ansprche" required>
-    <option value="">Geschlecht</option>
+    <option value="">Ansprache</option>
     <option value="Weiblich">Weiblich</option>
     <option value="Maennlich">Maennlich</option>
     <option value="Divers">Divers</option>
@@ -58,7 +58,7 @@ form.addEventListener("submit", function(e) {
     email: form.user_email.value,
     budget: form.budget.value,
     name: form.user_name.value,
-    Ansprache: form.geschlecht.value,
+    Ansprche: form.geschlecht.value,
     size: form.size.value,
     usage: form.usage.value,
     rgb: form.rgb.value,
@@ -72,7 +72,7 @@ const subject = "PC-Anfrage ITworksPCs";
 const bodyParts = [
   `E-Mail: ${entry.email}`,
   `Name: ${entry.name}`,
-  `Anschprache: ${entry.Geschlecht}`,
+  `Ansprche: ${entry.Geschlecht}`,
   `Budget: ${entry.budget} Fr.`,
   `Größe: ${entry.size}`,
   `Verwendung: ${entry.usage}`,

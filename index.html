@@ -15,26 +15,18 @@ button { cursor: pointer; }
   <input type="email" name="user_email" placeholder="Deine E-Mail" required>
   <input type="text" name="user_name" placeholder="Dein Name" required>
   <input type="number" name="budget" placeholder="Budget (Fr.)" required>
-  <select name="Ansprche" required>
-    <option value="">Ansprache</option>
-    <option value="Weiblich">Weiblich</option>
-    <option value="Maennlich">Maennlich</option>
-    <option value="Divers">Divers</option>
-  </select>
+  <input type="text" name="Ansprache" placeholder="Dein(e) Pronomen" required>
   <select name="size" required>
-    <option value="">PC Groesse</option>
     <option value="Small">Klein</option>
     <option value="Mid">Mittel</option>
     <option value="Big">Gross</option>
   </select>
   <select name="usage" required>
-    <option value="">Verwendung</option>
     <option value="Gaming">Gaming</option>
     <option value="Workstation">Workstation</option>
     <option value="Gaming & Workstation">Gaming & Workstation</option>
   </select>
   <select name="rgb" required>
-    <option value="">RGB?</option>
     <option value="Fancy (RGB)">Mit RGB</option>
     <option value="Nicht Fancy">Ohne RGB</option>
   </select>
@@ -58,7 +50,7 @@ form.addEventListener("submit", function(e) {
     email: form.user_email.value,
     budget: form.budget.value,
     name: form.user_name.value,
-    Ansprche: form.geschlecht.value,
+    Pronomen: form.Ansprache.value,
     size: form.size.value,
     usage: form.usage.value,
     rgb: form.rgb.value,
@@ -72,7 +64,7 @@ const subject = "PC-Anfrage ITworksPCs";
 const bodyParts = [
   `E-Mail: ${entry.email}`,
   `Name: ${entry.name}`,
-  `Ansprche: ${entry.Geschlecht}`,
+  `Pronomen: ${entry.Ansprache}`,
   `Budget: ${entry.budget} Fr.`,
   `Größe: ${entry.size}`,
   `Verwendung: ${entry.usage}`,

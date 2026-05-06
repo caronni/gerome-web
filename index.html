@@ -16,7 +16,7 @@ button { cursor: pointer; }
   <input type="text" name="user_name" placeholder="Dein Name" required>
   <input type="number" name="budget" placeholder="Budget (Fr.)" required>
   <input type="text" name="Ansprache" placeholder="Dein(e) Pronomen" required>
-  <select name="Groesse" required>
+  <select name="groesse" required>
     <option value="">PC Groesse</option>
     <option value="Small">Klein</option>
     <option value="Mid">Mittel</option>
@@ -67,9 +67,9 @@ const subject = "PC-Anfrage ITworksPCs";
 const bodyParts = [
   `E-Mail: ${entry.email}`,
   `Name: ${entry.name}`,
-  `Pronomen: ${entry.Ansprache}`,
+  `Pronomen: ${entry.Pronomen}`,
   `Budget: ${entry.budget} Fr.`,
-  `Größe: ${entry.groesse}`,
+  `Größe: ${entry.size}`,
   `Verwendung: ${entry.usage}`,
   `RGB: ${entry.rgb}`,
   entry.extras ? `Extras: ${entry.extras}` : "",

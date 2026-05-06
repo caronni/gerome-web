@@ -16,19 +16,22 @@ button { cursor: pointer; }
   <input type="text" name="user_name" placeholder="Dein Name" required>
   <input type="number" name="budget" placeholder="Budget (Fr.)" required>
   <input type="text" name="Ansprache" placeholder="Dein(e) Pronomen" required>
-  <select name="size" required>
+  <select name="Groesse" required>
+    <option value="">PC Groesse</option>
     <option value="Small">Klein</option>
     <option value="Mid">Mittel</option>
     <option value="Big">Gross</option>
   </select>
   <select name="usage" required>
+    <option value="">Verwendung</option>
     <option value="Gaming">Gaming</option>
     <option value="Workstation">Workstation</option>
     <option value="Gaming & Workstation">Gaming & Workstation</option>
   </select>
   <select name="rgb" required>
-    <option value="Fancy (RGB)">Mit RGB</option>
-    <option value="Nicht Fancy">Ohne RGB</option>
+    <option value="">Lichter?</option>
+    <option value="Fancy (RGB)">Mit Lichter</option>
+    <option value="Nicht Fancy">Ohne Lichter</option>
   </select>
   <textarea name="extras" placeholder="Extra Wuensche..."></textarea>
   <button type="submit">Anfrage speichern</button>
@@ -51,7 +54,7 @@ form.addEventListener("submit", function(e) {
     budget: form.budget.value,
     name: form.user_name.value,
     Pronomen: form.Ansprache.value,
-    size: form.size.value,
+    size: form.groesse.value,
     usage: form.usage.value,
     rgb: form.rgb.value,
     extras: form.extras.value,
@@ -66,7 +69,7 @@ const bodyParts = [
   `Name: ${entry.name}`,
   `Pronomen: ${entry.Ansprache}`,
   `Budget: ${entry.budget} Fr.`,
-  `Größe: ${entry.size}`,
+  `Größe: ${entry.groesse}`,
   `Verwendung: ${entry.usage}`,
   `RGB: ${entry.rgb}`,
   entry.extras ? `Extras: ${entry.extras}` : "",

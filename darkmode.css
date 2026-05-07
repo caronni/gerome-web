@@ -3,7 +3,6 @@
   --text-color: #121212;
 }
 
-/* Override variables when dark mode is active */
 [data-theme="dark"] {
   --bg-color: #121212;
   --text-color: #fAf9f6;
@@ -12,5 +11,5 @@
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
-  transition: background-color 0.3s ease; /* Smoother transition */
+  transition: background-color 0.3s ease; 
 }

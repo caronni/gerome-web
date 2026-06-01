@@ -1,88 +1,155 @@
-<!-- What are you doing here -->
-
-<title>ITworksPCs Bestellen</title>
-<style>
-body { font-family: Arial, sans-serif; margin: 40px auto; max-width: 500px; min-height: 200vh }
-h1 { margin-bottom: 16px; }
-input, select, textarea, button { display: block; width: 100%; margin-bottom: 10px; padding: 12px; }
-textarea { height: 60px; resize: vertical; }
-button { cursor: pointer; }
-#status { margin-top: 8px; font-size: 16px; }
-</style>
+<!DOCTYPE html>
+<html lang="de">
 <head>
+  <meta charset="UTF-8">
+  <title>ITworksPCs</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px auto; max-width: 500px; min-height: 100vh; }
+    h1 { margin-bottom: 16px; text-align: center; }
+    p { line-height: 1.5; }
+    input, select, textarea, button { display: block; width: 100%; margin-bottom: 10px; padding: 12px; box-sizing: border-box; }
+    textarea { height: 80px; resize: vertical; }
+    button { cursor: pointer; background-color: #007BFF; color: white; border: none; border-radius: 4px; font-size: 16px; }
+    button:hover { background-color: #0056b3; }
+    
+    /* Extra Design für den Zurück-Button */
+    .btn-back { background-color: #6c757d; margin-bottom: 20px; }
+    .btn-back:hover { background-color: #5a6268; }
+
+    /* CSS Klassen zum Verstecken und Anzeigen der Bereiche */
+    .screen { display: none; }
+    .screen.active { display: block; }
+    
+    /* Design für die Startseite-Auswahl */
+    .menu-button { height: 60px; font-size: 18px; margin-bottom: 20px; }
+    
+    #status { margin-top: 8px; font-size: 16px; }
+  </style>
 </head>
 <body>
-<h1>ITworksPCs Bestellen</h1>
-  <p>Hallo, ich bin Gerome, und bin ein an Technik interessierter Teenager.
-  Ich verkaufe PCs aus leideschaft und versuche so ehrlich im allem
-  wie möglich zu sein. Je nach bestellung kann es mehrere Monate brauchen.
-  Nur innerhalb der Schweiz. Minnimum 500CHF Gratis 2 jahre Garantie. 30 Tage Rückgabe.
-  Lieferkosten undefiniert.</p>
-<form id="pcForm">
-  <input type="email" name="user_email" placeholder="Deine E-Mail" required>
-  <input type="text" name="user_name" placeholder="Dein Name" required>
-  <input type="number" name="budget" placeholder="Budget (Fr.)" required>
- <select name="groesse" required>
-    <option value="">PC Groesse</option>
-    <option value="Small">Klein</option>
-    <option value="Mid">Mittel</option>
-    <option value="Big">Gross</option>
-  </select>
-  <select name="usage" required</select>Verwendung</option</select>
-    <option value="Gaming">Gaming</option>
-    <option value="Workstation">Workstation</option>
-    <option value="Gaming & Workstation">Gaming & Workstation</option>
-  </select>
-  <select name="rgb" required>
-    <option value="">Lichter?</option>
-    <option value="Fancy (RGB)">Mit Lichter</option>
-    <option value="Nicht Fancy">Ohne Lichter</option>
-  </select>
-  <textarea name="extras" placeholder="Extra Wuensche..."></textarea>
-  <button type="submit">Anfrage speichern</button>
-  <p id="status"></p>
-</form>
-<hr>
 
-<ol>
-  <li id="fn1">
-    Support Email: gerome+support@caronni.org
-    <a href="#fnref1"> </a>
-  </li>
-</ol>
-<script>
-const form = document.getElementById("pcForm");
-form.addEventListener("submit", function(e) {
-  e.preventDefault();
-  const entry = {
-    email: form.user_email.value,
-    budget: form.budget.value,
-    name: form.user_name.value,
-    size: form.groesse.value,
-    usage: form.usage.value,
-    rgb: form.rgb.value,
-    extras: form.extras.value,
-    date: new Date().toLocaleString()
-  };
+  <div id="selection-screen" class="screen active">
+    <h1>Willkommen bei ITworksPCs</h1>
+    <p style="text-align: center;">Hallo, ich bin Gerome. Was kann ich heute für dich tun?</p>
+    <button class="menu-button" onclick="showScreen('order-screen')">💻 Neuen PC Bestellen</button>
+    <button class="menu-button" onclick="showScreen('repair-screen')">🔧 PC / Laptop Reparieren</button>
+  </div>
 
-const recipient = "gerome+Orders@caronni.org";
+  <div id="order-screen" class="screen">
+    <button class="btn-back" onclick="showScreen('selection-screen')">⬅ Zurück zur Auswahl</button>
+    <h1>ITworksPCs Bestellen</h1>
+    <p>Ich verkaufe PCs aus Leidenschaft und versuche so ehrlich wie möglich zu sein. Je nach Bestellung kann es mehrere Monate dauern.<br>
+    <b>Nur innerhalb der Schweiz. Minimum 500 CHF. Gratis 2 Jahre Garantie. 30 Tage Rückgabe.</b> Lieferkosten undefiniert.</p>
+    
+    <form id="pcForm">
+      <input type="email" name="user_email" placeholder="Deine E-Mail" required>
+      <input type="text" name="user_name" placeholder="Dein Name" required>
+      <input type="number" name="budget" placeholder="Budget (Fr.)" required>
+      
+      <select name="groesse" required>
+        <option value="">PC Groesse wählen</option>
+        <option value="Small">Klein</option>
+        <option value="Mid">Mittel</option>
+        <option value="Big">Gross</option>
+      </select>
+      
+      <select name="usage" required>
+        <option value="">Verwendung wählen</option>
+        <option value="Gaming">Gaming</option>
+        <option value="Workstation">Workstation</option>
+        <option value="Gaming & Workstation">Gaming & Workstation</option>
+      </select>
+      
+      <select name="rgb" required>
+        <option value="">Lichter?</option>
+        <option value="Fancy (RGB)">Mit Lichter</option>
+        <option value="Nicht Fancy">Ohne Lichter</option>
+      </select>
+      
+      <textarea name="extras" placeholder="Extra Wünsche..."></textarea>
+      <button type="submit">Anfrage senden</button>
+    </form>
+  </div>
 
-const subject = "PC-Anfrage ITworksPCs";
-const bodyParts = [
-  `E-Mail: ${entry.email}`,
-  `Name: ${entry.name}`,
-  `Budget: ${entry.budget} Fr.`,
-  `Größe: ${entry.size}`,
-  `Verwendung: ${entry.usage}`,
-  `RGB: ${entry.rgb}`,
-  entry.extras ? `Extras: ${entry.extras}` : "",
-  `Datum: ${entry.date}`
-].filter(Boolean).join("\n");
+  <div id="repair-screen" class="screen">
+    <button class="btn-back" onclick="showScreen('selection-screen')">⬅ Zurück zur Auswahl</button>
+    <h1>PC & Laptop Reparatur</h1>
+    <p>Dein Gerät macht Probleme? Beschreibe mir, was los ist, und ich schaue es mir an.</p>
+    
+    <form id="repairForm">
+      <input type="email" name="rep_email" placeholder="Deine E-Mail" required>
+      <input type="text" name="rep_name" placeholder="Dein Name" required>
+      
+      <select name="rep_type" required>
+        <option value="">Gerätetyp wählen</option>
+        <option value="Desktop PC">Desktop PC</option>
+        <option value="Laptop">Laptop</option>
+      </select>
+      
+      <input type="text" name="rep_model" placeholder="Computer Modell (z.B. HP Pavilion, Eigenbau)" required>
+      <textarea name="rep_problem" placeholder="Beschreibe das Problem genau..." required></textarea>
+      
+      <button type="submit">Reparatur anfragen</button>
+    </form>
+  </div>
 
-const mailtoUrl = "mailto:" + recipient +
-  "?subject=" + encodeURIComponent(subject) +
-  "&body=" + encodeURIComponent(bodyParts);
+  <hr style="margin-top: 40px;">
+  <p style="font-size: 12px; text-align: center;">Support Email: gerome+support@caronni.org</p>
 
-window.location.href = mailtoUrl;
-});
-</script>
+  <script>
+    // 1. Funktion zum Wechseln der Bildschirme
+    function showScreen(screenId) {
+      // Zuerst alle Bildschirme (divs mit der Klasse 'screen') verstecken
+      const screens = document.querySelectorAll('.screen');
+      screens.forEach(screen => {
+        screen.classList.remove('active');
+      });
+      
+      // Danach nur den ausgewählten Bildschirm anzeigen
+      document.getElementById(screenId).classList.add('active');
+    }
+
+    // 2. Logik für das PC-Bestellformular (Dein Original-Code, leicht angepasst)
+    const pcForm = document.getElementById("pcForm");
+    pcForm.addEventListener("submit", function(e) {
+      e.preventDefault(); 
+      
+      const recipient = "gerome+Orders@caronni.org";
+      const subject = "PC-Anfrage ITworksPCs";
+      
+      const bodyParts = [
+        `E-Mail: ${pcForm.user_email.value}`,
+        `Name: ${pcForm.user_name.value}`,
+        `Budget: ${pcForm.budget.value} Fr.`,
+        `Größe: ${pcForm.groesse.value}`,
+        `Verwendung: ${pcForm.usage.value}`,
+        `RGB: ${pcForm.rgb.value}`,
+        pcForm.extras.value ? `Extras: ${pcForm.extras.value}` : "",
+        `Datum: ${new Date().toLocaleString()}`
+      ].filter(Boolean).join("\n");
+
+      window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyParts)}`;
+    });
+
+    // 3. Logik für das NEUE Reparaturformular
+    const repairForm = document.getElementById("repairForm");
+    repairForm.addEventListener("submit", function(e) {
+      e.preventDefault(); 
+      
+      const recipient = "gerome+reperatur@caronni.org"; // Deine neue E-Mail
+      const subject = "Reparatur-Anfrage ITworksPCs";
+      
+      const bodyParts = [
+        `E-Mail: ${repairForm.rep_email.value}`,
+        `Name: ${repairForm.rep_name.value}`,
+        `Gerätetyp: ${repairForm.rep_type.value}`,
+        `Modell: ${repairForm.rep_model.value}`,
+        `Problem: ${repairForm.rep_problem.value}`,
+        `Datum: ${new Date().toLocaleString()}`
+      ].filter(Boolean).join("\n");
+
+      window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyParts)}`;
+    });
+  </script>
+</body>
+</html>

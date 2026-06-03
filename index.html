@@ -72,6 +72,42 @@
       <button type="submit">Anfrage senden</button>
     </form>
   </div>
+  <div id="bauhelp-screen" class="screen">
+    <button class="btn-back" onclick="showScreen('selection-screen')">⬅ Zurück zur Auswahl</button>
+    <h1>Bauhilfe Kriegen</h1>
+    <p>Du willst ein Desktop oder ein Framework Laptop haben, weisst aber nicht wie man es baut?.
+                           Kein Problem, ich helfe gern!<br>
+  
+    
+    <form id="pcForm">
+      <input type="email" name="user_email" placeholder="Deine E-Mail" required>
+      <input type="text" name="user_name" placeholder="Dein Name" required>
+      <input type="number" name="budget" placeholder="Budget (Fr.)" required>
+      
+      <select name="groesse" required>
+        <option value="">PC Groesse wählen</option>
+        <option value="Small">Klein</option>
+        <option value="Mid">Mittel</option>
+        <option value="Big">Gross</option>
+      </select>
+      
+      <select name="usage" required>
+        <option value="">Verwendung wählen</option>
+        <option value="Gaming">Gaming</option>
+        <option value="Workstation">Workstation</option>
+        <option value="Gaming & Workstation">Gaming & Workstation</option>
+      </select>
+      
+      <select name="rgb" required>
+        <option value="">Lichter?</option>
+        <option value="Fancy (RGB)">Mit Lichter</option>
+        <option value="Nicht Fancy">Ohne Lichter</option>
+      </select>
+      
+      <textarea name="extras" placeholder="Extra Wünsche..."></textarea>
+      <button type="submit">Anfrage senden</button>
+    </form>
+  </div>
 
   <div id="repair-screen" class="screen">
     <button class="btn-back" onclick="showScreen('selection-screen')">⬅ Zurück zur Auswahl</button>

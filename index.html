@@ -82,29 +82,26 @@
     <form id="pcForm">
       <input type="email" name="user_email" placeholder="Deine E-Mail" required>
       <input type="text" name="user_name" placeholder="Dein Name" required>
-      <input type="number" name="budget" placeholder="Budget (Fr.)" required>
       
-      <select name="groesse" required>
-        <option value="">PC Groesse wählen</option>
-        <option value="Small">Klein</option>
-        <option value="Mid">Mittel</option>
-        <option value="Big">Gross</option>
+      <select name="typ" required>
+        <option value="">PC typ waelen</option>
+        <option value="Custom">Desktop</option>
+        <option value="Custom">Framework</option>
       </select>
       
-      <select name="usage" required>
-        <option value="">Verwendung wählen</option>
-        <option value="Gaming">Gaming</option>
-        <option value="Workstation">Workstation</option>
-        <option value="Gaming & Workstation">Gaming & Workstation</option>
+      <select name="State" required>
+        <option value="">Zustand/option>
+        <option value="Gaming">Ich stecke fest</option>
+        <option value="Workstation">Noch nicht begonnen</option>
       </select>
       
-      <select name="rgb" required>
-        <option value="">Lichter?</option>
-        <option value="Fancy (RGB)">Mit Lichter</option>
-        <option value="Nicht Fancy">Ohne Lichter</option>
+      <select name="mehr" required>
+        <option value="">Alle Komponenten beisammen?</option>
+        <option value="Fancy (RGB)">Ja</option>
+        <option value="Nicht Fancy">Nein</option>
       </select>
       
-      <textarea name="extras" placeholder="Extra Wünsche..."></textarea>
+      <textarea name="Detais" placeholder="Extra Detais"></textarea>
       <button type="submit">Anfrage senden</button>
     </form>
   </div>
@@ -153,6 +150,26 @@
       
       const recipient = "gerome+Orders@caronni.org";
       const subject = "PC-Anfrage ITworksPCs";
+      
+      const bodyParts = [
+        `E-Mail: ${pcForm.user_email.value}`,
+        `Name: ${pcForm.user_name.value}`,
+        `Budget: ${pcForm.budget.value} Fr.`,
+        `Größe: ${pcForm.groesse.value}`,
+        `Verwendung: ${pcForm.usage.value}`,
+        `RGB: ${pcForm.rgb.value}`,
+        pcForm.extras.value ? `Extras: ${pcForm.extras.value}` : "",
+        `Datum: ${new Date().toLocaleString()}`
+      ].filter(Boolean).join("\n");
+
+      window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyParts)}`;
+    });
+      const pcForm = document.getElementById("pcForm");
+    pcForm.addEventListener("submit", function(e) {
+      e.preventDefault(); 
+      
+      const recipient = "gerome+bauhelp@caronni.org";
+      const subject = "PC-Hilfe ITworksPCs";
       
       const bodyParts = [
         `E-Mail: ${pcForm.user_email.value}`,

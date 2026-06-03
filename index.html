@@ -29,8 +29,7 @@
 <body>
 
   <div id="selection-screen" class="screen active">
-    <h1>Willkommen bei ITworksPCs
-               Über mich:</h1>
+    <h1>Willkommen bei ITworksPCs<br>Über mich:</h1>
     <p style="text-align: center;">Hallo, ich bin Gerome, ein in Technik interessierter Teenager, welcher versucht, so ehrlich und günstig wie möglich PCs zu verkaufen, reparieren und upgraden. Wenn du irgendwelche Fragen an mich hast, schreibe mir gerne auf meiner Support-E-Mail..</p>
     <button class="menu-button" onclick="showScreen('order-screen')">💻 Neuen PC Bestellen</button>
     <button class="menu-button" onclick="showScreen('repair-screen')">🔧 PC / Laptop Reparieren</button>
@@ -72,36 +71,35 @@
       <button type="submit">Anfrage senden</button>
     </form>
   </div>
+
   <div id="bauhelp-screen" class="screen">
     <button class="btn-back" onclick="showScreen('selection-screen')">⬅ Zurück zur Auswahl</button>
-    <h1>Bauhilfe Kriegen           NICHT FERTIG</h1>
-    <p>Du willst ein Desktop oder ein Framework Laptop haben, weisst aber nicht wie man ihn baut?
-                           Kein Problem, ich helfe gern!<br>
+    <h1>Bauhilfe Kriegen - NICHT FERTIG</h1>
+    <p>Du willst ein Desktop oder ein Framework Laptop haben, weisst aber nicht wie man ihn baut? Kein Problem, ich helfe gern!</p>
   
-    
-    <form id="pcForm">
+    <form id="bauhelpForm">
       <input type="email" name="user_email" placeholder="Deine E-Mail" required>
       <input type="text" name="user_name" placeholder="Dein Name" required>
       
       <select name="typ" required>
-        <option value="">PC typ waelen</option>
-        <option value="Custom">Desktop</option>
-        <option value="Custom">Framework</option>
+        <option value="">PC Typ wählen</option>
+        <option value="Desktop">Desktop</option>
+        <option value="Framework">Framework</option>
       </select>
       
       <select name="State" required>
-        <option value="">Zustand/option>
-        <option value="Gaming">Ich stecke fest</option>
-        <option value="Workstation">Noch nicht begonnen</option>
+        <option value="">Zustand wählen</option>
+        <option value="Ich stecke fest">Ich stecke fest</option>
+        <option value="Noch nicht begonnen">Noch nicht begonnen</option>
       </select>
       
       <select name="mehr" required>
         <option value="">Alle Komponenten beisammen?</option>
-        <option value="Fancy (RGB)">Ja</option>
-        <option value="Nicht Fancy">Nein</option>
+        <option value="Ja">Ja</option>
+        <option value="Nein">Nein</option>
       </select>
       
-      <textarea name="Detais" placeholder="Extra Detais"></textarea>
+      <textarea name="Detais" placeholder="Extra Details"></textarea>
       <button type="submit">Anfrage senden</button>
     </form>
   </div>
@@ -133,17 +131,14 @@
   <script>
     // 1. Funktion zum Wechseln der Bildschirme
     function showScreen(screenId) {
-      // Zuerst alle Bildschirme (divs mit der Klasse 'screen') verstecken
       const screens = document.querySelectorAll('.screen');
       screens.forEach(screen => {
         screen.classList.remove('active');
       });
-      
-      // Danach nur den ausgewählten Bildschirm anzeigen
       document.getElementById(screenId).classList.add('active');
     }
 
-    // 2. Logik für das PC-Bestellformular (Dein Original-Code, leicht angepasst)
+    // 2. Logik für das PC-Bestellformular
     const pcForm = document.getElementById("pcForm");
     pcForm.addEventListener("submit", function(e) {
       e.preventDefault(); 
@@ -164,33 +159,34 @@
 
       window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyParts)}`;
     });
-      const pcForm = document.getElementById("pcForm");
-    pcForm.addEventListener("submit", function(e) {
+
+    // 3. Logik für das Bauhilfe-Formular
+    const bauhelpForm = document.getElementById("bauhelpForm");
+    bauhelpForm.addEventListener("submit", function(e) {
       e.preventDefault(); 
       
       const recipient = "gerome+bauhelp@caronni.org";
       const subject = "PC-Hilfe ITworksPCs";
       
       const bodyParts = [
-        `E-Mail: ${pcForm.user_email.value}`,
-        `Name: ${pcForm.user_name.value}`,
-        `Budget: ${pcForm.budget.value} Fr.`,
-        `Größe: ${pcForm.groesse.value}`,
-        `Verwendung: ${pcForm.usage.value}`,
-        `RGB: ${pcForm.rgb.value}`,
-        pcForm.extras.value ? `Extras: ${pcForm.extras.value}` : "",
+        `E-Mail: ${bauhelpForm.user_email.value}`,
+        `Name: ${bauhelpForm.user_name.value}`,
+        `Typ: ${bauhelpForm.typ.value}`,
+        `Zustand: ${bauhelpForm.State.value}`,
+        `Komponenten beisammen?: ${bauhelpForm.mehr.value}`,
+        bauhelpForm.Detais.value ? `Details: ${bauhelpForm.Detais.value}` : "",
         `Datum: ${new Date().toLocaleString()}`
       ].filter(Boolean).join("\n");
 
       window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyParts)}`;
     });
 
-    // 3. Logik für das NEUE Reparaturformular
+    // 4. Logik für das Reparaturformular
     const repairForm = document.getElementById("repairForm");
     repairForm.addEventListener("submit", function(e) {
       e.preventDefault(); 
       
-      const recipient = "gerome+reperatur@caronni.org"; // Deine neue E-Mail
+      const recipient = "gerome+reperatur@caronni.org";
       const subject = "Reparatur-Anfrage ITworksPCs";
       
       const bodyParts = [
